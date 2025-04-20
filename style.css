@@ -303,6 +303,19 @@ section {
   text-align: center;
 }
 
+.details-container2 {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 2rem;
+  border: rgb(53, 53, 53) 0.1rem solid;
+  border-color: rgb(163, 163, 163);
+  text-align: center;
+  width: 40%;
+  height: 40%;
+  inset: 0;
+  margin: auto;
+}
+
 .section-container {
   gap: 4rem;
   height: 80%;
@@ -366,8 +379,8 @@ article .icon {
 
 .project-img {
   border-radius: 2rem;
-  width: 90%;
-  height: 90%;
+  width: 55%;
+  height: 55%;
 }
 
 .project-title {
