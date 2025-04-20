@@ -310,7 +310,7 @@ section {
   border: rgb(53, 53, 53) 0.1rem solid;
   border-color: rgb(163, 163, 163);
   text-align: center;
-  width: 40%;
+  width: 45%;
   height: 40%;
   inset: 0;
   margin: auto;
@@ -379,7 +379,7 @@ article .icon {
 
 .project-img {
   border-radius: 2rem;
-  width: 55%;
+  width: 60%;
   height: 55%;
 }
 
