@@ -1,387 +1,454 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
-  </head>
-  <body>
-    <nav id="desktop-nav">
-      <div class="logo">David Gamboa</div>
-      <div>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-    <nav id="hamburger-nav">
-      <div class="logo">David Gamboa</div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>David Gamboa — DevOps & Cloud Engineer</title>
+  <meta name="description" content="Portfolio of David Gamboa, a DevOps and Cloud-focused Software Developer specializing in automation, CI/CD, and infrastructure as code." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="mediaqueries.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">David</a>
+      <ul class="nav-links" id="nav-links-desktop">
+        <li><a href="#about" data-i18n="navAbout">About</a></li>
+        <li><a href="#experience" data-i18n="navExperience">Experience</a></li>
+        <li><a href="#projects" data-i18n="navProjects">Projects</a></li>
+        <li><a href="#skills" data-i18n="navSkills">Skills</a></li>
+        <li><a href="#contact" data-i18n="navContact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="lang-toggle" id="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span id="lang-label">EN</span>
+        </button>
+        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
           <span></span>
           <span></span>
           <span></span>
         </div>
-        <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" onclick="toggleMobileMenu()" data-i18n="navAbout">About</a>
+    <a href="#experience" onclick="toggleMobileMenu()" data-i18n="navExperience">Experience</a>
+    <a href="#projects" onclick="toggleMobileMenu()" data-i18n="navProjects">Projects</a>
+    <a href="#skills" onclick="toggleMobileMenu()" data-i18n="navSkills">Skills</a>
+    <a href="#contact" onclick="toggleMobileMenu()" data-i18n="navContact">Contact</a>
+  </div>
+
+  <!-- ==================== HERO ==================== -->
+  <section id="hero">
+    <canvas id="particles-canvas"></canvas>
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <div class="hero-text-container">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          <span data-i18n="heroBadge">Available for opportunities</span>
+        </div>
+        <h1 class="hero-title" data-i18n-html="heroTitle">
+          DevOps & Cloud <span class="highlight">Engineer</span>
+        </h1>
+        <p class="hero-subtitle" data-i18n="heroSubtitle">
+          DevOps & Cloud-focused Software Developer building automated infrastructure, resilient CI/CD pipelines, and scalable cloud architectures.
+        </p>
+        <p class="hero-support" data-i18n="heroSupport">
+          I design systems that deploy faster, scale smarter, and run reliably.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn-primary" data-i18n="heroBtn1">View Projects</a>
+          <a href="#" id="cv-download-btn" class="btn-secondary" data-i18n="heroBtn2">Download CV</a>
         </div>
       </div>
-    </nav>
-    <section id="profile">
-      <div class="section__pic-container">
-        <img src="./assets/yo1.png" alt="John Doe profile picture"/ style="border-radius: 100%;">
+      
+      <div class="hero-image-container animate-on-scroll delay-2">
+        <div class="hero-image-glow"></div>
+        <img src="./assets/Foto_Perfil_1.jpg" alt="David Gamboa - DevOps Engineer" class="hero-image" />
       </div>
-      <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">David Gamboa</h1>
-        <p class="section__text__p2">Software Developer</p>
-        <div class="btn-container">
-          <button
-            class="btn btn-color-2"
-            onclick="window.open('./assets/CV-David Gamboa.pdf')"
-          >
-            Download CV
-          </button>
-          <button class="btn btn-color-1" onclick="location.href='./#contact'">
-            Contact Info
-          </button>
-        </div>
-        <div id="socials-container">
-          <img
-            src="./assets/discord-logo.png"
-            width="35px"
-            height="40px"
-            alt="My LinkedIn profile"
-            class="icon"
-            onclick="location.href='http://Discordapp.com/users/336629861785534466'"
-          />
-          <img
-            src="./assets/github.png"
-            alt="My Github profile"
-            class="icon"
-            onclick="location.href='https://github.com/DavidFG16'"
-          />
-        </div>
+    </div>
+
+  </section>
+
+  <!-- ==================== ABOUT ==================== -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-label" data-i18n="aboutLabel">Get to know me</span>
+        <div class="section-divider"></div>
+        <h2 class="section-title" data-i18n="aboutTitle">About Me</h2>
       </div>
-    </section>
-    <section id="about">
-      <p class="section__text__p1">Get To Know More</p>
-      <h1 class="title">About Me</h1>
-      <div class="section-container">
-        <div class="section__pic-container">
-          <img
-            src="./assets/img2.jpg"
-            alt="Profile picture"
-            class="about-pic"
-            height="430px"
-            width="420px"
-          />
+      <div class="about-content">
+        <div class="about-text animate-on-scroll from-left">
+          <p data-i18n="aboutP1">
+            I'm David Gamboa, a passionate Software Developer with a deep focus on 
+            DevOps and Cloud Engineering. My journey in tech started with a Technical 
+            High School Diploma in Computer Systems, and has since evolved into building 
+            real-world infrastructure solutions.
+          </p>
+          <p data-i18n="aboutP2">
+            I thrive on automating processes, designing scalable cloud architectures, 
+            and streamlining deployment pipelines. From configuring CI/CD workflows to 
+            orchestrating containerized applications, I'm driven by the challenge of 
+            making infrastructure reliable, efficient, and elegant.
+          </p>
         </div>
-        <div class="about-details-container">
-          <div class="about-containers">
-            <div class="details-container">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>Experience</h3>
-              <p>5+ Months <br />Full Stack Development</p>
-            </div>
-            <div class="details-container">
-              <img
-                src="./assets/education.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3>Education</h3>
-              <p>Technical High School Diploma in Computer Systems</p>
-            </div>
+        <div class="about-icon-grid animate-on-scroll from-right">
+          <div class="about-icon-card">
+            <i class="fa-solid fa-cloud"></i>
+            <h4 data-i18n="aboutCloud">Cloud</h4>
+            <p data-i18n="aboutCloudDesc">AWS & Cloud Architecture</p>
           </div>
-          <div class="text-container">
-            <p>
-              David Fernando Gamboa Castellanos is a highly motivated and sociable aspiring Backend Developer 
-              with 4 months of software development training (ongoing) 
-              and a Technical High School Diploma in Computer Systems. 
-              He has shown leadership skills by managing two projects 
-              during his studies and is strong in problem-solving and teamwork. 
-              Passionate about technology, driven to learn, and always open to collaboration, 
-              he enjoys working in dynamic environments where he can grow both personally and professionally.
+          <div class="about-icon-card">
+            <i class="fa-solid fa-gears"></i>
+            <h4 data-i18n="aboutAutomation">Automation</h4>
+            <p data-i18n="aboutAutomationDesc">Scripts & Workflows</p>
+          </div>
+          <div class="about-icon-card">
+            <i class="fa-solid fa-infinity"></i>
+            <h4 data-i18n="aboutCICD">CI/CD</h4>
+            <p data-i18n="aboutCICDDesc">Pipelines & Delivery</p>
+          </div>
+          <div class="about-icon-card">
+            <i class="fa-solid fa-server"></i>
+            <h4 data-i18n="aboutIaC">Infrastructure as Code</h4>
+            <p data-i18n="aboutIaCDesc">Terraform & Automation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EXPERIENCE ==================== -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-label" data-i18n="expLabel">My Journey</span>
+        <div class="section-divider"></div>
+        <h2 class="section-title" data-i18n="expTitle">Experience</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item animate-on-scroll">
+          <div class="timeline-dot timeline-dot-current"></div>
+          <div class="timeline-card">
+            <span class="timeline-company">Globant</span>
+            <span class="timeline-current-tag" data-i18n="expCurrentTag">Current</span>
+            <h3 class="timeline-role" data-i18n="expGlobantRole">DevOps Trainee</h3>
+            <div class="timeline-date animate-on-scroll">
+              <i class="fa-regular fa-calendar-days"></i>
+              <span data-i18n="expGlobantTime">November 2026 — Present</span>
+            </div>
+            <p class="timeline-description" data-i18n="expGlobantDesc">
+              Started working in real cloud environments and participating in production-level 
+              infrastructure and deployment workflows. Gaining practical experience with DevOps 
+              practices, infrastructure automation, and CI/CD pipelines while contributing to 
+              improving deployment processes and operational efficiency in a professional enterprise setting.
             </p>
-          </div>
-        </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#experience'"
-      />
-    </section>
-    <section id="experience">
-      <p class="section__text__p1">Explore My</p>
-      <h1 class="title">Experience</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container">
-            <h2 class="experience-sub-title">Frontend Development</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>HTML</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>CSS</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Python</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>JavaScript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>PhP</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>API Rest</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
+            <div class="timeline-actions">
+              <a href="./assets/CERTIFICADO_LABORAL_GLOBANT.pdf" target="_blank" class="cert-btn">
+                <i class="fa-solid fa-file-contract"></i>
+                <span data-i18n="expCertBtn">Certificate</span>
+              </a>
             </div>
           </div>
-          <div class="details-container">
-            <h2 class="experience-sub-title">Software Methodologies & Version Control Tools</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Scrum</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Github</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <!-- <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Express JS</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article> -->
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Git</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
+        </div>
+        <div class="timeline-item animate-on-scroll">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="timeline-company">Campuslands</span>
+            <h3 class="timeline-role" data-i18n="expCampusRole">Software Developer (Student)</h3>
+            <div class="timeline-date animate-on-scroll">
+              <i class="fa-regular fa-calendar-days"></i>
+              <span data-i18n="expCampusTime">November 2024 — October 2025</span>
+            </div>
+            <p class="timeline-description" data-i18n-html="expCampusDesc">
+              Worked in structured learning environments designed to simulate real-world software development teams. Focused primarily on software development while collaborating on projects that involved backend logic, APIs, and modern web technologies.
+              <br><br>
+              Additionally gained exposure to DevOps practices by working with tools such as Docker and GitHub Actions to containerize applications and automate basic CI/CD workflows, building a foundation in modern development and deployment processes.
+            </p>
+            <div class="timeline-actions">
+              <a href="./assets/SIET-David Fernando Gamboa Castellanos.pdf" target="_blank" class="cert-btn">
+                <i class="fa-solid fa-file-contract"></i>
+                <span data-i18n="expCertBtn">Certificate</span>
+              </a>
             </div>
           </div>
         </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#projects'"
-      />
-    </section>
-    <section id="projects">
-      <p class="section__text__p1">Browse My Recent</p>
-      <h1 class="title">Projects</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <!-- <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-1.png"
-                alt="Project 1"
-                class="project-img"
-              />
+    </div>
+  </section>
+
+  <!-- ==================== PROJECTS ==================== -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-label" data-i18n="projLabel">Featured Work</span>
+        <div class="section-divider"></div>
+        <h2 class="section-title" data-i18n="projTitle">Projects</h2>
+        <p class="section-subtitle" data-i18n="projSubtitle">Real-world cloud infrastructure and automation solutions</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card animate-on-scroll delay-1">
+          <div class="project-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+              <line x1="6" y1="6" x2="6.01" y2="6"/>
+              <line x1="6" y1="18" x2="6.01" y2="18"/>
+            </svg>
+          </div>
+          <h3 class="project-title">AWS Titanfolio – EC2 + ALB + Boto3 Infrastructure Automation</h3>
+          <p class="project-description" data-i18n="proj1Desc">
+            Infrastructure automation project that deploys a scalable architecture using 
+            EC2, Application Load Balancer, and Boto3 scripting.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">AWS</span>
+            <span class="project-tag">EC2</span>
+            <span class="project-tag">ALB</span>
+            <span class="project-tag">Boto3</span>
+            <span class="project-tag">Python</span>
+          </div>
+          <a href="https://github.com/DavidFG16/aws-titanfolio-alb-ec2-boto3" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+            <span data-i18n="projGithub">View on GitHub</span>
+          </a>
+        </div>
+        <div class="project-card animate-on-scroll delay-2">
+          <div class="project-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <h3 class="project-title">AWS ECR CI/CD Pipeline with GitHub Actions</h3>
+          <p class="project-description" data-i18n="proj2Desc">
+            CI/CD pipeline that builds and pushes Docker images to AWS ECR using 
+            GitHub Actions for automated container registry management.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">AWS ECR</span>
+            <span class="project-tag">Docker</span>
+            <span class="project-tag">GitHub Actions</span>
+            <span class="project-tag">CI/CD</span>
+          </div>
+          <a href="https://github.com/DavidFG16/aws-ecr-github-actions-ci-cd" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+            <span data-i18n="projGithub">View on GitHub</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SKILLS ==================== -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-label" data-i18n="skillsLabel">Tech Stack</span>
+        <div class="section-divider"></div>
+        <h2 class="section-title" data-i18n="skillsTitle">Skills</h2>
+        <p class="section-subtitle" data-i18n="skillsSubtitle">Technologies I work with to build and deploy infrastructure</p>
+      </div>
+      <div class="skills-categories">
+        <!-- DevOps Category -->
+        <div class="skill-category animate-on-scroll delay-1">
+          <div class="category-header">
+            <div class="category-icon-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6"/><path d="M2.5 22v-6h6"/><path d="M2 11.5a10 10 0 0 1 18.8-4.3"/><path d="M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
             </div>
-            <h2 class="experience-sub-title project-title">Project One</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
+            <h3 data-i18n="skillsCatDevops">DevOps</h3>
+          </div>
+          <div class="category-icons">
+            <div class="skill-icon-item" data-tooltip="AWS">
+              <i class="devicon-amazonwebservices-plain-wordmark colored"></i>
             </div>
-          </div> -->
-          <!-- <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-2.png"
-                alt="Project 2"
-                class="project-img"
-              />
+            <div class="skill-icon-item" data-tooltip="GitHub Actions">
+              <i class="devicon-githubactions-plain colored"></i>
             </div>
-            <h2 class="experience-sub-title project-title">Project Two</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
+            <div class="skill-icon-item" data-tooltip="GitLab">
+              <i class="devicon-gitlab-plain colored"></i>
             </div>
-          </div> -->
-          <div class="details-container2 color-container">
-            <div class="article-container">
-              <img
-                src="./assets/Orionfondo.png"
-                alt="Orion Juego de Typing"
-                class="project-img"
-              />
+            <div class="skill-icon-item" data-tooltip="Jenkins">
+              <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/jenkins.svg" width="40" height="40" alt="Jenkins" />
             </div>
-            <h2 class="experience-sub-title project-title">Orión Typing Game</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/DavidFG16/Orion-Juego-de-Typing.git'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://davidfg16.github.io/Orion-Juego-de-Typing/'"
-              >
-                Live Demo
-              </button>
+            <div class="skill-icon-item" data-tooltip="Docker">
+              <img src="https://img.icons8.com/?size=100&id=cdYUlRaag9G9&format=png&color=000000" width="35" height="35" alt="Docker" />
+            </div>
+            <div class="skill-icon-item" data-tooltip="Kubernetes">
+              <i class="devicon-kubernetes-plain colored"></i>
+            </div>
+            <div class="skill-icon-item" data-tooltip="Terraform">
+              <i class="devicon-terraform-plain colored"></i>
+            </div>
+            <div class="skill-icon-item" data-tooltip="Ansible">
+              <img src="https://cdn.simpleicons.org/ansible/EE0000" width="32" height="32" alt="Ansible" />
+            </div>
+            <div class="skill-icon-item" data-tooltip="Vagrant">
+              <i class="devicon-vagrant-plain colored"></i>
+            </div>
+            <div class="skill-icon-item" data-tooltip="Linux">
+              <img src="https://img.icons8.com/?size=100&id=m6O2bFdG70gw&format=png&color=000000" width="32" height="32" alt="Linux" />
+            </div>
+            <div class="skill-icon-item" data-tooltip="Bash">
+              <img src="https://cdn.simpleicons.org/gnubash/white" width="32" height="32" alt="Bash" />
+            </div>
+            <div class="skill-icon-item" data-tooltip="Git">
+              <i class="devicon-git-plain colored"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Development Category -->
+        <div class="skill-category animate-on-scroll delay-2">
+          <div class="category-header">
+            <div class="category-icon-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3 data-i18n="skillsCatDev">Development</h3>
+          </div>
+          <div class="category-icons">
+            <div class="skill-icon-item" data-tooltip="HTML5">
+              <i class="devicon-html5-plain colored"></i>
+            </div>
+            <div class="skill-icon-item" data-tooltip="CSS3">
+              <i class="devicon-css3-plain colored"></i>
+            </div>
+            <div class="skill-icon-item" data-tooltip="JavaScript">
+              <i class="devicon-javascript-plain colored"></i>
+            </div>
+            <div class="skill-icon-item" data-tooltip="Python">
+              <img src="https://img.icons8.com/?size=100&id=13441&format=png&color=000000" width="40" height="40" alt="Python" />
+            </div>
+            <div class="skill-icon-item" data-tooltip="PHP">
+              <i class="devicon-php-plain colored"></i>
+            </div>
+            <div class="skill-icon-item" data-tooltip="Laravel">
+              <i class="devicon-laravel-original colored"></i>
+            </div>
+            <div class="skill-icon-item" data-tooltip="MySQL">
+              <i class="devicon-mysql-plain colored"></i>
+            </div>
+            <div class="skill-icon-item" data-tooltip="PostgreSQL">
+              <i class="devicon-postgresql-plain colored"></i>
+            </div>
+            <div class="skill-icon-item" data-tooltip="Android">
+              <i class="devicon-android-plain colored"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Others Category -->
+        <div class="skill-category animate-on-scroll delay-3">
+          <div class="category-header">
+            <div class="category-icon-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+            <h3 data-i18n="skillsCatOther">Others</h3>
+          </div>
+          <div class="category-icons">
+            <div class="skill-icon-item" data-tooltip="Visual Studio Code">
+              <i class="devicon-vscode-plain colored"></i>
+            </div>
+            <div class="skill-icon-item" data-tooltip="Antigravity">
+              <img src="https://antigravity.google/assets/image/brand/antigravity-icon__full-color.png" width="40" height="40" alt="Antigravity" />
+            </div>
+            <div class="skill-icon-item" data-tooltip="Postman">
+              <i class="devicon-postman-plain colored"></i>
+            </div>
+            <div class="skill-icon-item" data-tooltip="Figma">
+              <i class="devicon-figma-plain colored"></i>
+            </div>
+            <div class="skill-icon-item" data-tooltip="Adobe Photoshop">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" width="40" height="40" alt="Adobe Photoshop" />
+            </div>
+            <div class="skill-icon-item" data-tooltip="Jira">
+              <img src="https://cdn.simpleicons.org/jira/0052CC" width="32" height="32" alt="Jira" />
+            </div>
+            <div class="skill-icon-item" data-tooltip="Notion">
+              <img src="https://cdn.simpleicons.org/notion/white" width="32" height="32" alt="Notion" />
+            </div>
+            <div class="skill-icon-item" data-tooltip="Spotify">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
             </div>
           </div>
         </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#contact'"
-      />
-    </section>
-    <section id="contact">
-      <p class="section__text__p1">Get in Touch</p>
-      <h1 class="title">Contact Me</h1>
-      <div class="contact-info-upper-container">
-        <div class="contact-info-container">
-          <img
-            src="./assets/email.png"
-            alt="Email icon"
-            class="icon contact-icon email-icon"
-          />
-          <p><a href="mailto:albertogamboacotte7@gmail.com">albertogamboacotte7@gmail.com</a></p>
-        </div>
-        <div class="contact-info-container">
-          <img
-            src="./assets/whatsapp.png"
-            alt="LinkedIn icon"
-            class="icon contact-icon"
-          />
-          <p><a href="https://w.app/1rc68y">Whatsapp</a></p>
-        </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT ==================== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-label" data-i18n="contactLabel">Let's Connect</span>
+        <div class="section-divider"></div>
+        <h2 class="section-title" data-i18n="contactTitle">Contact</h2>
+        <p class="section-subtitle" data-i18n="contactSubtitle">Have a project or opportunity? Feel free to reach out</p>
       </div>
-    </section>
-    <footer>
-      <nav>
-        <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-      <p>Copyright &#169; 2025 David Gamboa. All Rights Reserved.</p>
-    </footer>
-    <script src="script.js"></script>
-  </body>
+      <div class="contact-container animate-on-scroll">
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="name" data-i18n="contactName">Name</label>
+            <input type="text" id="name" name="name" data-i18n-placeholder="contactNamePh" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="email" data-i18n="contactEmail">Email</label>
+            <input type="email" id="email" name="email" data-i18n-placeholder="contactEmailPh" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="message" data-i18n="contactMessage">Message</label>
+            <textarea id="message" name="message" data-i18n-placeholder="contactMessagePh" placeholder="Tell me about your project or idea..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit-btn" data-i18n="contactBtn">Send Message</button>
+          <div class="form-toast" id="form-toast" data-i18n="contactToast">✓ Message sent! Your email client should open shortly.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="footer-glow"></div>
+    <div class="footer-content">
+      <p class="footer-text" data-i18n="footerText">&copy; 2025 David Gamboa. All Rights Reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/DavidFG16" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/davidfgamboa/" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a href="mailto:albertogamboacotte7@gmail.com" class="footer-link" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>
