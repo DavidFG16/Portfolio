@@ -161,11 +161,19 @@ function initSmoothScroll() {
 }
 
 /* ===========================
-   CONTACT FORM
+   CONTACT FORM (EmailJS)
    =========================== */
+// Initialize EmailJS
+try {
+  emailjs.init("jAlwthIYGnaClOnlH");
+} catch (error) {
+  console.warn("EmailJS could not be initialized. Ensure the SDK is loaded.");
+}
+
 function initContactForm() {
   const form = document.getElementById('contact-form');
   const toast = document.getElementById('form-toast');
+  const submitBtn = document.querySelector('.form-submit-btn');
 
   if (!form) return;
 
@@ -178,20 +186,57 @@ function initContactForm() {
 
     if (!name || !email || !message) return;
 
-    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-    );
-    const mailtoLink = `mailto:albertogamboacotte7@gmail.com?subject=${subject}&body=${body}`;
+    // Get translations for current language
+    const lang = typeof currentLang !== 'undefined' ? currentLang : 'en';
+    const t = translations[lang];
 
-    window.open(mailtoLink, '_blank');
+    // Loading State
+    submitBtn.textContent = t.contactBtnSending || 'Sending...';
+    submitBtn.disabled = true;
+    toast.classList.remove('show', 'error');
 
-    toast.classList.add('show');
-    form.reset();
+    console.log("Contact form submitted:", {
+      name: name,
+      email: email,
+      message: message
+    });
+    console.log("Sending email via EmailJS...");
 
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 4000);
+    // Send email via EmailJS
+    emailjs.send("service_nd89ssm", "template_fjfpxsy", {
+      name: name,
+      email: email,
+      message: message
+    }).then(function(response) {
+      console.log("Email successfully sent via EmailJS");
+      console.log("Response:", response);
+
+      // Success Feedback
+      toast.textContent = t.contactToastSuccess || "✓ Message sent successfully!";
+      toast.classList.add('show');
+      form.reset();
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4000);
+    }).catch(function(error) {
+      console.error("Email sending failed");
+      console.error("Error details:", error);
+      
+      // Error Feedback
+      toast.textContent = t.contactToastError || "✕ Something went wrong. Please try again.";
+      toast.classList.add('error');
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+        toast.classList.remove('error');
+      }, 4000);
+    }).finally(function() {
+      // Restore Button State
+      submitBtn.textContent = t.contactBtn || 'Send Message';
+      submitBtn.disabled = false;
+    });
   });
 }
 

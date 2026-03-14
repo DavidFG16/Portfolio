@@ -39,7 +39,7 @@ const translations = {
     expCampusTime: 'November 2024 — October 2025',
     expCampusDesc: 'Worked in structured learning environments designed to simulate real-world software development teams. Focused primarily on software development while collaborating on projects that involved backend logic, APIs, and modern web technologies.<br><br>Additionally gained exposure to DevOps practices by working with tools such as Docker and GitHub Actions to containerize applications and automate basic CI/CD workflows, building a foundation in modern development and deployment processes.',
     expGlobantRole: 'DevOps Trainee',
-    expGlobantTime: 'November 2026 — Present',
+    expGlobantTime: 'November 2025 — Present',
     expGlobantDesc: 'Started working in real cloud environments and participating in production-level infrastructure and deployment workflows. Gaining practical experience with DevOps practices, infrastructure automation, and CI/CD pipelines while contributing to improving deployment processes and operational efficiency in a professional enterprise setting.',
     expCertBtn: 'Certificate',
     expCurrentTag: 'Current',
@@ -71,10 +71,13 @@ const translations = {
     contactEmailPh: 'your@email.com',
     contactMessagePh: 'Tell me about your project or idea...',
     contactBtn: 'Send Message',
-    contactToast: '✓ Message sent! Your email client should open shortly.',
+    contactBtnSending: 'Sending...',
+    contactToastSuccess: '✓ Message sent successfully!',
+    contactToastError: '✕ Something went wrong. Please try again.',
 
     // Footer
     footerText: '© 2025 David Gamboa. All Rights Reserved.',
+    footerWhatsApp: 'Contact me on WhatsApp',
   },
 
   es: {
@@ -113,8 +116,8 @@ const translations = {
     expCampusRole: 'Desarrollador de Software (Estudiante)',
     expCampusTime: 'Noviembre 2024 — Octubre 2025',
     expCampusDesc: 'Trabajé en entornos de aprendizaje estructurados diseñados para simular equipos de desarrollo de software del mundo real. Me enfoqué principalmente en el desarrollo de software mientras colaboraba en proyectos que involucraban lógica backend, APIs y tecnologías web modernas.<br><br>Adicionalmente, obtuve exposición a prácticas DevOps trabajando con herramientas como Docker y GitHub Actions para contenedorizar aplicaciones y automatizar flujos de trabajo CI/CD básicos, construyendo una base en procesos modernos de desarrollo y despliegue.',
-    expGlobantRole: 'Aprendiz DevOps',
-    expGlobantTime: 'Noviembre 2026 — Presente',
+    expGlobantRole: 'Practicante DevOps',
+    expGlobantTime: 'Noviembre 2025 — Presente',
     expGlobantDesc: 'Comencé a trabajar en entornos reales de la nube y a participar en flujos de trabajo de infraestructura y despliegue a nivel de producción. Obteniendo experiencia práctica con prácticas DevOps, automatización de infraestructura y pipelines CI/CD mientras contribuyo a mejorar los procesos de despliegue y la eficiencia operativa en un entorno empresarial profesional.',
     expCertBtn: 'Certificado',
     expCurrentTag: 'Actual',
@@ -146,9 +149,12 @@ const translations = {
     contactEmailPh: 'tu@correo.com',
     contactMessagePh: 'Cuéntame sobre tu proyecto o idea...',
     contactBtn: 'Enviar Mensaje',
-    contactToast: '✓ ¡Mensaje enviado! Tu cliente de correo debería abrirse en breve.',
+    contactBtnSending: 'Enviando...',
+    contactToastSuccess: '✓ ¡Mensaje enviado con éxito!',
+    contactToastError: '✕ Algo salió mal. Por favor, inténtalo de nuevo.',
 
     // Footer
-    footerText: '© 2025 David Gamboa. Todos los derechos reservados.',
+    footerText: '© 2026 David Gamboa. Todos los derechos reservados.',
+    footerWhatsApp: 'Contáctame por WhatsApp',
   },
 };
