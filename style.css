@@ -63,6 +63,39 @@ html {
   scroll-padding-top: 80px;
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #005088, var(--accent-alt));
+  border-radius: 10px;
+  border: 3px solid var(--bg-primary); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--accent-alt), var(--accent));
+  border: 2px solid var(--bg-primary); 
+}
+
+/* Scroll Progress Bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+  z-index: 9999;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
 body {
   font-family: var(--font-family);
   background: var(--bg-primary);
@@ -1016,8 +1049,9 @@ section {
 }
 
 .projects-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 32px;
 }
 
@@ -1030,6 +1064,8 @@ section {
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
+  flex: 1 1 calc(50% - 16px);
+  max-width: calc(50% - 16px);
 }
 
 .project-card::before {
@@ -1133,6 +1169,95 @@ section {
 
 .project-link:hover svg {
   transform: translateX(2px);
+}
+
+/* ===========================
+   BEHIND THE SCENES
+   =========================== */
+#behind-the-scenes {
+  background: linear-gradient(
+    180deg,
+    var(--bg-primary) 0%,
+    var(--bg-secondary) 50%,
+    var(--bg-primary) 100%
+  );
+}
+
+.pipeline-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  max-width: 960px;
+  margin: 0 auto;
+  flex-wrap: nowrap;
+}
+
+.pipeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 28px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+  flex: 1 1 0;
+  min-width: 140px;
+  max-width: 200px;
+}
+
+.pipeline-step:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-6px);
+  box-shadow:
+    0 16px 48px rgba(0, 212, 255, 0.12),
+    0 0 30px rgba(0, 212, 255, 0.05);
+}
+
+.pipeline-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: var(--accent);
+  transition: var(--transition);
+}
+
+.pipeline-step:hover .pipeline-icon {
+  background: rgba(0, 212, 255, 0.2);
+  box-shadow: 0 0 24px var(--accent-glow);
+  border-color: var(--accent);
+}
+
+.pipeline-step h4 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.pipeline-step p {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.pipeline-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  color: var(--accent);
+  opacity: 0.4;
+  flex-shrink: 0;
 }
 
 /* ===========================
@@ -1404,6 +1529,20 @@ section {
 
 .form-toast.show {
   display: block;
+}
+
+.form-toast.error {
+  background: rgba(255, 82, 82, 0.12);
+  border-color: rgba(255, 82, 82, 0.3);
+  color: var(--error);
+}
+
+.form-helper {
+  text-align: center;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  margin-top: 16px;
+  font-weight: 400;
 }
 
 /* ===========================

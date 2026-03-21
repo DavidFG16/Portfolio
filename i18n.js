@@ -50,7 +50,10 @@ const translations = {
     projSubtitle: 'Real-world cloud infrastructure and automation solutions',
     proj1Desc: 'Infrastructure automation project that deploys a scalable architecture using EC2, Application Load Balancer, and Boto3 scripting.',
     proj2Desc: 'CI/CD pipeline that builds and pushes Docker images to AWS ECR using GitHub Actions for automated container registry management.',
+    proj3Title: 'DevOps Portfolio Website',
+    proj3Desc: 'This is my personal portfolio built without frontend frameworks, focused on performance, clean design, and real-world DevOps practices. The project is containerized using Docker and automated with CI/CD pipelines, demonstrating how a simple static site can be transformed into a deployable system.',
     projGithub: 'View on GitHub',
+    projCode: 'View on GitHub',
 
     // Skills
     skillsLabel: 'Tech Stack',
@@ -74,6 +77,20 @@ const translations = {
     contactBtnSending: 'Sending...',
     contactToastSuccess: '✓ Message sent successfully!',
     contactToastError: '✕ Something went wrong. Please try again.',
+    contactHelper: 'I usually reply within 24 hours',
+
+    // Behind the Scenes
+    btsLabel: "How It's Built",
+    btsTitle: 'Behind the Scenes',
+    btsSubtitle: "This portfolio is more than a static site. Here's the DevOps pipeline behind it.",
+    btsStep1: 'Code',
+    btsStep1Desc: 'HTML, CSS & JS pushed to GitHub',
+    btsStep2: 'Docker',
+    btsStep2Desc: 'Containerized with Nginx Alpine',
+    btsStep3: 'CI/CD',
+    btsStep3Desc: 'GitHub Actions builds & pushes',
+    btsStep4: 'Live',
+    btsStep4Desc: 'Deployed and running on the web',
 
     // Footer
     footerText: '© 2025 David Gamboa. All Rights Reserved.',
@@ -127,8 +144,11 @@ const translations = {
     projTitle: 'Proyectos',
     projSubtitle: 'Soluciones reales de infraestructura cloud y automatización',
     proj1Desc: 'Proyecto de automatización de infraestructura que despliega una arquitectura escalable utilizando EC2, Application Load Balancer y scripts Boto3.',
-    proj2Desc: 'Pipeline CI/CD que construye y sube imágenes Docker a AWS ECR usando GitHub Actions para gestión automatizada de registro de contenedores.',
+    proj2Desc: 'Pipeline CI/CD que construye y sube imágenes Docker a AWS ECR usando GitHub Actions para la gestión automatizada del registro de contenedores.',
+    proj3Title: 'Portafolio Web DevOps',
+    proj3Desc: 'Este es mi portafolio personal construido sin frameworks frontend, enfocado en rendimiento, diseño limpio y prácticas reales de DevOps. El proyecto está contenerizado usando Docker y automatizado con pipelines de CI/CD, demostrando cómo un sitio estático simple puede transformarse en un sistema desplegable.',
     projGithub: 'Ver en GitHub',
+    projCode: 'Ver en GitHub',
 
     // Skills
     skillsLabel: 'Stack Tecnológico',
@@ -152,6 +172,20 @@ const translations = {
     contactBtnSending: 'Enviando...',
     contactToastSuccess: '✓ ¡Mensaje enviado con éxito!',
     contactToastError: '✕ Algo salió mal. Por favor, inténtalo de nuevo.',
+    contactHelper: 'Normalmente respondo en menos de 24 horas',
+
+    // Behind the Scenes
+    btsLabel: 'Cómo Está Hecho',
+    btsTitle: 'Detrás de Escena',
+    btsSubtitle: 'Este portafolio es más que un sitio estático. Así funciona el pipeline DevOps detrás de él.',
+    btsStep1: 'Código',
+    btsStep1Desc: 'HTML, CSS y JS subidos a GitHub',
+    btsStep2: 'Docker',
+    btsStep2Desc: 'Contenedorizado con Nginx Alpine',
+    btsStep3: 'CI/CD',
+    btsStep3Desc: 'GitHub Actions construye y publica',
+    btsStep4: 'En Línea',
+    btsStep4Desc: 'Desplegado y corriendo en la web',
 
     // Footer
     footerText: '© 2026 David Gamboa. Todos los derechos reservados.',

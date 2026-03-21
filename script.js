@@ -120,12 +120,21 @@ function initScrollAnimations() {
    =========================== */
 function initNavbar() {
   const navbar = document.getElementById('navbar');
+  const scrollProgress = document.getElementById('scroll-progress');
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
+    }
+
+    // Update scroll progress bar
+    if (scrollProgress) {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollProgress.style.width = scrollPercent + '%';
     }
   });
 }
