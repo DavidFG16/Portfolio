@@ -1,0 +1,25 @@
+# Version control
+.git
+.gitignore
+
+# Documentation & CI (not needed in image)
+README.md
+LICENSE
+.github/
+scripts/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker meta
+Dockerfile
+.dockerignore
+docker-compose*.yml
