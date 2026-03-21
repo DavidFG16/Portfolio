@@ -156,14 +156,48 @@ function toggleMobileMenu() {
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
+      const href = this.getAttribute('href');
+      
+      // Ignore empty hashes (like Download CV button)
+      if (href === '#') return;
+      
+      const target = document.querySelector(href);
       if (target) {
-        const offsetTop = target.offsetTop - 70;
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth',
-        });
+        e.preventDefault();
+        
+        // Temporarily disable CSS scroll behavior to prevent visual conflict & stutter
+        document.documentElement.style.scrollBehavior = 'auto';
+        
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition - 80; // 80px offset for fixed navbar
+        let startTime = null;
+        const duration = 800; // ms to scroll fully
+
+        // Easing function (easeInOutCubic for very smooth start and end)
+        const easeInOutCubic = (t, b, c, d) => {
+          t /= d / 2;
+          if (t < 1) return c / 2 * t * t * t + b;
+          t -= 2;
+          return c / 2 * (t * t * t + 2) + b;
+        };
+
+        const animation = (currentTime) => {
+          if (startTime === null) startTime = currentTime;
+          const timeElapsed = currentTime - startTime;
+          const currentScroll = easeInOutCubic(timeElapsed, startPosition, distance, duration);
+          
+          window.scrollTo(0, currentScroll);
+          
+          if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+          } else {
+            // Restore scroll behavior after completing animation
+            document.documentElement.style.scrollBehavior = '';
+          }
+        };
+
+        requestAnimationFrame(animation);
       }
     });
   });
