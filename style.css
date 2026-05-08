@@ -400,8 +400,13 @@ section {
   color: var(--accent);
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.active::after {
   width: 100%;
+}
+
+.nav-links a.active {
+  color: var(--accent);
 }
 
 /* Nav Right */
@@ -436,10 +441,6 @@ section {
   box-shadow: 0 0 16px var(--accent-glow);
 }
 
-/* Assuming .footer-link:hover would be here based on the instruction's context */
-/* The instruction implies .footer-link:hover exists, but it's not in the provided content.
-   Inserting the new classes after the closest logical point based on the instruction's snippet,
-   which is before .lang-toggle svg and after .lang-toggle:hover. */
 
 .lang-toggle svg {
   opacity: 0.7;
@@ -516,6 +517,63 @@ section {
 .mobile-menu a:hover {
   color: var(--accent);
   text-shadow: 0 0 20px var(--accent-glow);
+}
+
+.mobile-menu a {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.mobile-menu.active a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu.active a:nth-child(1) { transition-delay: 0.1s; }
+.mobile-menu.active a:nth-child(2) { transition-delay: 0.15s; }
+.mobile-menu.active a:nth-child(3) { transition-delay: 0.2s; }
+.mobile-menu.active a:nth-child(4) { transition-delay: 0.25s; }
+.mobile-menu.active a:nth-child(5) { transition-delay: 0.3s; }
+
+.mobile-menu-socials {
+  display: flex;
+  gap: 20px;
+  margin-top: 24px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-slow);
+}
+
+.mobile-menu.active .mobile-menu-socials {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.35s;
+}
+
+.mobile-menu-socials a {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-lg);
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.mobile-menu-socials a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.mobile-menu-socials svg {
+  width: 20px;
+  height: 20px;
 }
 
 /* ===========================
@@ -615,10 +673,18 @@ section {
 }
 
 .hero-title .highlight {
-  background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+  background: linear-gradient(135deg, var(--accent), var(--accent-alt), #00e5ff, var(--accent));
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradientFlow 4s ease-in-out infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .hero-subtitle {
@@ -664,10 +730,15 @@ section {
   transform: translate(-50%, -50%);
   width: 120%;
   height: 120%;
-  background: radial-gradient(circle, var(--accent-glow-strong) 0%, transparent 70%);
+  background: conic-gradient(from 0deg, var(--accent-glow-strong), transparent, var(--accent-glow), transparent, var(--accent-glow-strong));
   filter: blur(40px);
   z-index: -1;
-  animation: pulseGlow 4s ease-in-out infinite alternate;
+  animation: rotateGlow 8s linear infinite;
+}
+
+@keyframes rotateGlow {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .hero-image {
@@ -959,6 +1030,33 @@ section {
   margin-bottom: 8px;
   display: inline-block;
   vertical-align: middle;
+}
+
+.timeline-company a {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.timeline-company a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--accent);
+  transition: var(--transition);
+}
+
+.timeline-company a:hover {
+  text-shadow: 0 0 12px var(--accent-glow);
+}
+
+.timeline-company a:hover::after {
+  width: 100%;
 }
 
 .timeline-current-tag {
@@ -1631,4 +1729,76 @@ footer {
 .lang-transitioning [data-i18n],
 .lang-transitioning [data-i18n-html] {
   transition: opacity 0.3s ease;
+}
+
+/* ===========================
+   WAVE DIVIDERS
+   =========================== */
+.wave-divider {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 2;
+}
+
+.wave-divider svg {
+  display: block;
+  width: 100%;
+  height: 40px;
+}
+
+.wave-divider-bottom {
+  top: auto;
+  bottom: -1px;
+  transform: rotate(180deg);
+}
+
+/* ===========================
+   BACK TO TOP
+   =========================== */
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: var(--transition);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 30px var(--accent-glow);
+  transform: translateY(-4px);
+}
+
+.back-to-top svg {
+  width: 22px;
+  height: 22px;
+  transition: var(--transition);
+}
+
+.back-to-top:hover svg {
+  transform: translateY(-2px);
 }

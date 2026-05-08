@@ -151,53 +151,44 @@ function toggleMobileMenu() {
 }
 
 /* ===========================
-   SMOOTH SCROLL
+   SMOOTH SCROLL (Lenis)
    =========================== */
+let lenis;
+
 function initSmoothScroll() {
+  // Initialize Lenis for buttery smooth momentum scrolling
+  lenis = new Lenis({
+    duration: 1.2,          // Duration of the scroll animation (seconds)
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential easing for natural feel
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    wheelMultiplier: 1,
+    touchMultiplier: 2,
+  });
+
+  // Connect Lenis to requestAnimationFrame loop
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Handle anchor link clicks using Lenis scrollTo
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
-      
+
       // Ignore empty hashes (like Download CV button)
       if (href === '#') return;
-      
+
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        
-        // Temporarily disable CSS scroll behavior to prevent visual conflict & stutter
-        document.documentElement.style.scrollBehavior = 'auto';
-        
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition - 80; // 80px offset for fixed navbar
-        let startTime = null;
-        const duration = 800; // ms to scroll fully
-
-        // Easing function (easeInOutCubic for very smooth start and end)
-        const easeInOutCubic = (t, b, c, d) => {
-          t /= d / 2;
-          if (t < 1) return c / 2 * t * t * t + b;
-          t -= 2;
-          return c / 2 * (t * t * t + 2) + b;
-        };
-
-        const animation = (currentTime) => {
-          if (startTime === null) startTime = currentTime;
-          const timeElapsed = currentTime - startTime;
-          const currentScroll = easeInOutCubic(timeElapsed, startPosition, distance, duration);
-          
-          window.scrollTo(0, currentScroll);
-          
-          if (timeElapsed < duration) {
-            requestAnimationFrame(animation);
-          } else {
-            // Restore scroll behavior after completing animation
-            document.documentElement.style.scrollBehavior = '';
-          }
-        };
-
-        requestAnimationFrame(animation);
+        lenis.scrollTo(target, {
+          offset: -80,       // Offset for the fixed navbar
+          duration: 1.2,     // Matches global duration
+        });
       }
     });
   });
@@ -369,6 +360,90 @@ function initI18n() {
 }
 
 /* ===========================
+   ACTIVE NAV LINK TRACKING
+   =========================== */
+function initActiveNav() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach((link) => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${id}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    },
+    {
+      threshold: 0.3,
+      rootMargin: '-80px 0px -50% 0px',
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
+
+/* ===========================
+   BACK TO TOP
+   =========================== */
+function initBackToTop() {
+  const btn = document.getElementById('back-to-top');
+  if (!btn) return;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  });
+
+  btn.addEventListener('click', () => {
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.5 });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+}
+
+/* ===========================
+   SKILL ICON STAGGER
+   =========================== */
+function initSkillStagger() {
+  document.querySelectorAll('.category-icons').forEach((grid) => {
+    const icons = grid.querySelectorAll('.skill-icon-item');
+    icons.forEach((icon, index) => {
+      icon.style.opacity = '0';
+      icon.style.transform = 'translateY(16px)';
+      icon.style.transition = `opacity 0.4s ease ${index * 50}ms, transform 0.4s ease ${index * 50}ms`;
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            icons.forEach((icon) => {
+              icon.style.opacity = '1';
+              icon.style.transform = 'translateY(0)';
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(grid);
+  });
+}
+
+/* ===========================
    INITIALIZATION
    =========================== */
 document.addEventListener('DOMContentLoaded', () => {
@@ -382,6 +457,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initNavbar();
   initSmoothScroll();
+  initActiveNav();
+  initBackToTop();
+  initSkillStagger();
   initContactForm();
   initDownloadCV();
   initI18n();

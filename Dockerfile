@@ -19,3 +19,6 @@ EXPOSE 80
 
 # Start Nginx in foreground (required for Docker)
 CMD ["nginx", "-g", "daemon off;"]
+
+ 
+ 
