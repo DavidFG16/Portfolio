@@ -275,8 +275,8 @@ function initContactForm() {
 }
 
 /* ===========================
-   DOWNLOAD CV
-   =========================== */
+  OPEN CV
+  =========================== */
 function initDownloadCV() {
   const btn = document.getElementById('cv-download-btn');
   if (!btn) return;
@@ -285,14 +285,8 @@ function initDownloadCV() {
     e.preventDefault();
     const lang = localStorage.getItem('portfolio-lang') || 'en';
     const fileName = lang === 'es' ? 'CV-Español.pdf' : 'CV-English.pdf';
-    
-    // Create a temporary link element to trigger the download
-    const link = document.createElement('a');
-    link.href = `./assets/${fileName}`;
-    link.download = fileName; // Provide default download name
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+
+    window.open(`./assets/${fileName}`, '_blank', 'noopener,noreferrer');
   });
 }
 

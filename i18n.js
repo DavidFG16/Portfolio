@@ -16,7 +16,7 @@ const translations = {
     heroSubtitle: 'DevOps & Cloud-focused Software Developer building automated infrastructure, resilient CI/CD pipelines, and scalable cloud architectures.',
     heroSupport: 'I design systems that deploy faster, scale smarter, and run reliably.',
     heroBtn1: 'View Projects',
-    heroBtn2: 'Download CV',
+    heroBtn2: 'View CV',
 
     // About
     aboutLabel: 'Get to know me',
@@ -113,7 +113,7 @@ const translations = {
     heroSubtitle: 'Desarrollador de Software enfocado en DevOps y Cloud, construyendo infraestructura automatizada, pipelines CI/CD resilientes y arquitecturas escalables.',
     heroSupport: 'Diseño sistemas que se despliegan más rápido, escalan mejor y se ejecutan de manera confiable.',
     heroBtn1: 'Ver Proyectos',
-    heroBtn2: 'Descargar CV',
+    heroBtn2: 'Ver CV',
 
     // About
     aboutLabel: 'Conóceme',
